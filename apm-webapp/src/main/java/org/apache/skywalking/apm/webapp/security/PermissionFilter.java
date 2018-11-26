@@ -69,38 +69,16 @@ public class PermissionFilter implements Filter {
         messageMap.put("message", message);
         response.setContentType("text/html;charset=utf-8的");
         response.setCharacterEncoding("UTF-8");
-//        Gson gson = new Gson();
-//        String html = "<div style=\"text-align:center;\">" + message + "</div>\n";\
         String html="<div id=\"hidebg\"></div>\n" +
                 "    <div id=\"hidebox\" onClick=\"hidebox();\">\n" +
                 "        <div  style=\"text-align:center;\">\n" +
                 "            <p class=\"box-head\">温馨提示</p>\n" +
                 "            <div class=\"hidebox-hr\"><hr/></div>\n" +
-                "            <p class=\"box-textarea\">您暂时没有查看权限，请联系客服获取权限哦～<p>\n" +
+                "            <p class=\"box-textarea\">您暂时没有查看权限，请联系技术人员获取权限～<p>\n" +
                 "        </div>\n" +
                 "    </div><br><div><a href=\"javascript:void(0);\"  onclick=\"showbox();\"></div>";
-//        String html="<script>window.alert('您没有访问此链接权限！')</script>";
         response.getWriter().print(html);
         response.getWriter().close();
     }
 
-//    private String generateNavHeader(List<SysAppVo> sysAppList) {
-//        StringBuffer buffer = new StringBuffer();
-//        if (sysAppList != null) {
-//            for (SysAppVo system : sysAppList) {
-//                buffer.append(" <li style=\"padding: 20px;\">");
-//                buffer.append("<a href=\"http://" + system.getDomain() + "\">" + system.getAppName() + "</a>");
-//                buffer.append("</li>");
-//            }
-//        }
-//        return buffer.toString();
-//    }
-
-    public UserInfoLogic getUserInfoLogic() {
-        return userInfoLogic;
-    }
-
-    public void setUserInfoLogic(UserInfoLogic userInfoLogic) {
-        this.userInfoLogic = userInfoLogic;
-    }
 }

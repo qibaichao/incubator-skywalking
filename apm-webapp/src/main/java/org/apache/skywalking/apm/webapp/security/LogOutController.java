@@ -24,7 +24,7 @@ public class LogOutController {
         String resStr = null;
         Gson gson = new Gson();
         try {
-            resStr = gson.toJson(new ResponseData("ok", "admin", "http://172.16.1.61:8080/logout?service=http://contract.test.renrendai.com:8080"));
+            resStr = gson.toJson(new ResponseData("ok", "admin", "http://172.16.1.61:8080/logout?service=http://apm.test.renrendai.com:8080"));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -45,7 +45,7 @@ spring:
   profiles:
     active: dev
   datasource:
-    url: jdbc:mysql://172.16.4.82:3306/renrendai_0513?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true
+    url: jdbc:mysql://mysql.test.we.com:3306/apm?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true
     username: root
     password: yZT0b6m32UDg
     driver-class-name: com.mysql.jdbc.Driver
