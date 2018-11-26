@@ -3,11 +3,17 @@ package org.apache.skywalking.apm.webapp.security;
 
 import com.google.gson.Gson;
 import org.apache.commons.lang.StringUtils;
+import org.apache.skywalking.apm.webapp.entity.UserInfo;
+import org.apache.skywalking.apm.webapp.logic.UserInfoLogic;
 import org.jasig.cas.client.util.AssertionHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -23,6 +29,8 @@ public class PermissionFilter implements Filter {
     private static Logger logger = LoggerFactory.getLogger(PermissionFilter.class);
 
     private Set<String> excludesPathSet = new HashSet<>();
+
+    private UserInfoLogic userInfoLogic;
 
     public void destroy() {
     }
@@ -40,7 +48,10 @@ public class PermissionFilter implements Filter {
             buildResponse(response, "用户未登录，无权访问" + path);
             return;
         }
-        if (ssoUserName.equalsIgnoreCase("qibaichao")) {
+        WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(request.getServletContext());
+        UserInfoLogic userInfoLogic = context.getBean(UserInfoLogic.class);
+        UserInfo userInfo = userInfoLogic.selectByUserName(ssoUserName);
+        if (userInfo == null) {
             logger.warn("您没有访问此链接权限{}", path);
             buildResponse(response, "您没有访问此链接权限:" + path);
             return;
@@ -56,10 +67,20 @@ public class PermissionFilter implements Filter {
     private void buildResponse(HttpServletResponse response, String message) throws IOException {
         Map<String, String> messageMap = new HashMap<>();
         messageMap.put("message", message);
-        response.setContentType("application/json;charset=UTF-8");
+        response.setContentType("text/html;charset=utf-8的");
         response.setCharacterEncoding("UTF-8");
-        Gson gson = new Gson();
-        response.getWriter().println(gson.toJson(messageMap));
+//        Gson gson = new Gson();
+//        String html = "<div style=\"text-align:center;\">" + message + "</div>\n";\
+        String html="<div id=\"hidebg\"></div>\n" +
+                "    <div id=\"hidebox\" onClick=\"hidebox();\">\n" +
+                "        <div  style=\"text-align:center;\">\n" +
+                "            <p class=\"box-head\">温馨提示</p>\n" +
+                "            <div class=\"hidebox-hr\"><hr/></div>\n" +
+                "            <p class=\"box-textarea\">您暂时没有查看权限，请联系客服获取权限哦～<p>\n" +
+                "        </div>\n" +
+                "    </div><br><div><a href=\"javascript:void(0);\"  onclick=\"showbox();\"></div>";
+//        String html="<script>window.alert('您没有访问此链接权限！')</script>";
+        response.getWriter().print(html);
         response.getWriter().close();
     }
 
@@ -74,4 +95,12 @@ public class PermissionFilter implements Filter {
 //        }
 //        return buffer.toString();
 //    }
+
+    public UserInfoLogic getUserInfoLogic() {
+        return userInfoLogic;
+    }
+
+    public void setUserInfoLogic(UserInfoLogic userInfoLogic) {
+        this.userInfoLogic = userInfoLogic;
+    }
 }

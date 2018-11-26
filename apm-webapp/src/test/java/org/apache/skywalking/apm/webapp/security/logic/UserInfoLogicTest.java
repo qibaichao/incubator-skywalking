@@ -1,6 +1,5 @@
 package org.apache.skywalking.apm.webapp.security.logic;
 
-import org.apache.skywalking.apm.webapp.dao.UserInfoDao;
 import org.apache.skywalking.apm.webapp.entity.UserInfo;
 import org.apache.skywalking.apm.webapp.logic.UserInfoLogic;
 import org.apache.skywalking.apm.webapp.security.BaseTest;
@@ -15,9 +14,6 @@ public class UserInfoLogicTest  extends BaseTest {
 
     @Autowired
     private UserInfoLogic userInfoLogic;
-
-//    @Autowired
-//    private UserInfoDao userInfoDao;
 
     @Test
     public void selectByUserName() {
