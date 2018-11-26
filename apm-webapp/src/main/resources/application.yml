@@ -45,9 +45,9 @@ spring:
   profiles:
     active: dev
   datasource:
-    url: jdbc:mysql://localhost:3306/apm
+    url: jdbc:mysql://172.16.4.82:3306/renrendai_0513?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true
     username: root
-    password: root
+    password: yZT0b6m32UDg
     driver-class-name: com.mysql.jdbc.Driver
     #使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource

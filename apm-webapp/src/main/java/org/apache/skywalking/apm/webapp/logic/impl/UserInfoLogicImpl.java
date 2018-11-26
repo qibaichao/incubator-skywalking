@@ -3,8 +3,8 @@ package org.apache.skywalking.apm.webapp.logic.impl;
 import org.apache.skywalking.apm.webapp.dao.UserInfoDao;
 import org.apache.skywalking.apm.webapp.entity.UserInfo;
 import org.apache.skywalking.apm.webapp.logic.UserInfoLogic;
-import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 
 /**
