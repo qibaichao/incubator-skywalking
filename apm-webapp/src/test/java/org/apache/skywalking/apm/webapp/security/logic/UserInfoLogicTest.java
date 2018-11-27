@@ -17,7 +17,7 @@ public class UserInfoLogicTest  extends BaseTest {
 
     @Test
     public void selectByUserName() {
-        String userName = "qibaichao";
+        String userName = "zhengzhijie";
         UserInfo userInfo = userInfoLogic.selectByUserName(userName);
         System.out.println("userName" + userInfo.getUserName());
     }

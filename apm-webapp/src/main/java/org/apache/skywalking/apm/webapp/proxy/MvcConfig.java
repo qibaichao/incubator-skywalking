@@ -122,7 +122,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         AuthenticationFilter authenticationFilter = new AuthenticationFilter();
         registration.setFilter(authenticationFilter);
         registration.addInitParameter("casServerLoginUrl","http://172.16.1.61:8080");
-        registration.addInitParameter("serverName","apm.test.renrendai.com/");
+        registration.addInitParameter("serverName","apm.test.renrendai.com");
         registration.addUrlPatterns("/*");
         registration.setName("CASFilter");
         registration.setOrder(3);
@@ -134,7 +134,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         Cas20ProxyReceivingTicketValidationFilter cas20ProxyReceivingTicketValidationFilter = new Cas20ProxyReceivingTicketValidationFilter();
         registration.setFilter(cas20ProxyReceivingTicketValidationFilter);
         registration.addInitParameter("casServerUrlPrefix","http://172.16.1.61:8080");
-        registration.addInitParameter("serverName","apm.test.renrendai.com/");
+        registration.addInitParameter("serverName","apm.test.renrendai.com");
         registration.addUrlPatterns("/*");
         registration.setName("CAS Validation Filter");
         registration.setOrder(4);
