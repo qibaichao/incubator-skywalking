@@ -51,11 +51,11 @@ public class PermissionFilter implements Filter {
         WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(request.getServletContext());
         UserInfoLogic userInfoLogic = context.getBean(UserInfoLogic.class);
         UserInfo userInfo = userInfoLogic.selectByUserName(ssoUserName);
-//        if (userInfo == null) {
-//            logger.warn("您没有访问此链接权限{}", path);
-//            buildResponse(response, "您没有访问此链接权限:" + path);
-//            return;
-//        }
+        if (userInfo == null) {
+            logger.warn("您没有访问此链接权限{}", path);
+            buildResponse(response, "您没有访问此链接权限:" + path);
+            return;
+        }
 
         chain.doFilter(request, response);
     }
